@@ -1,0 +1,167 @@
+// The Sass comment elf was here
+/* The CSS comment elf was here */
+                      /*bark*/                                                 
+// VARIABLES ========================================================= 
+
+$green: #576658; //could be a non-color name
+$light-green: lighten($green,30%);
+$red: #3F2427;
+$mauve: #af737b;
+$light-mauve: lighten($mauve,30%);
+                                                         
+// MIXINS AND PLACEHOLDERS =========================================== 
+
+%imgrep { /*image replacement technique*/
+	text-indent: 100%;                                                   
+	white-space: nowrap;                                                 
+	overflow: hidden;                                                    
+}
+                          
+@mixin border-radius($radius) { /* pass in a variable to handle the radius */
+  -webkit-border-radius: $radius;
+  -moz-border-radius: $radius;
+  -o-border-radius: $radius;
+  border-radius: $radius;  
+
+}
+
+@mixin prefix($property, $value) {
+  -webkit-#{$property}: $value;
+  -moz-#{$property}: $value;
+  -o-#{$property}: $value;
+  #{$property}: $value;  
+}
+
+
+@mixin button($bg) {
+	@include border-radius(8px);                                         
+  background: $bg;                                                 
+  border: none;
+  border-bottom: 4px solid darken($bg,10%);                                   
+  color: #FFF;                                                         
+  font-size: 20px;                                                     
+  font-weight: 600;                                                    
+  padding: 20px 35px;                                                  
+  text-shadow: 0 1px 1px rgba(0,0,0,0.75);                             
+  text-transform: uppercase;
+  &:hover {                                                
+	  // needs a darker background-color
+	  background: darken($bg, 10%); /* 'darken', 'lighten' is a function- takes two arguements, color variable and percentage to darken/lighten  */
+	}
+	&:active {                                               
+	  // needs a lighter background-color 
+	  background: lighten($bg, 10%);                                 
+	}
+}
+                                                                       
+// GLOBAL & BOOTSTRAP OVERRIDES ====================================== 
+                                                                       
+body {                                                                 
+  font-family: "Open Sans", sans-serif;                                
+  font-weight: 400;                                                    
+}                                                                      
+.banner {                                                              
+  background-color: #CCC;                                              
+  color: #FFF;                                                         
+  margin: 0 auto 20px;                                                 
+  max-width: 300px;                                                    
+  padding: 20px;                                                       
+  position: relative;                                                  
+  text-align: center;                                                  
+  width: 75%;                                                          
+  height: 40px;                                                        
+}                                                                      
+section {                                                              
+  padding: 40px 0;                                                     
+}   
+
+img {
+	background-color: #fff;
+	padding: 3%;
+	max-width: 94%;
+	@include prefix(box-shadow, 0 0 4px rgba(0,0,0,0.4));
+}                                                                   
+                                                                       
+// NAV & HEADER ====================================================== 
+                                                                       
+nav {                                                                  
+  background: $red url('../img/noise.png');                         
+}                                                                      
+.nav {                                                                 
+  margin: 5px 0;                                                       
+  position: relative;                                                  
+}                                                                      
+.logo {                                                                
+  background-color: $green;                                           
+  padding: 20px 10px;                                                  
+  position: absolute; 
+  &:after {                                                          
+	  border-color: $green $green transparent $green;                   
+	  border-style: solid;                                                 
+	  border-width: 0 88px 20px 88px;                                      
+	  content: "";                                                         
+	  position: absolute;                                                  
+	  bottom: -20px;                                                       
+	  left: 0;                                                             
+	  width: 0;                                                            
+	  height: 0;                                                           
+	} 
+	span {                                                           
+	  background: url('../img/logo.png');                                  
+	  display: block;                                                      
+	  width: 156px;                                                        
+	  height: 59px; 
+	  @extend %imgrep;
+	  @include prefix(transform, rotate(-6deg));
+	}                                                 
+}                                                                      
+                                                                       
+.hero-unit {                                                           
+  background: url('../img/wall.jpg') no-repeat left bottom;
+  @include prefix(background, cover); 												//////////
+  -webkit-background-size: cover;                                      
+  -moz-background-size: cover;                                         
+  -o-background-size: cover;                                           
+  background-size: cover;                                              
+  margin-bottom: 0;                                                    
+  -webkit-border-radius: 0;
+  -moz-border-radius: 0;
+  -o-border-radius: 0;
+  border-radius: 0;  
+}                                                                      
+
+
+                                                                       
+// ABOUT SECTION  ==================================================== 
+
+.section-about {
+	background-color: $light-green;
+	.banner {
+		background-color: $green;
+	}
+	.btn {
+		@include button($green);
+	}
+	
+}
+
+
+
+// BIKES SECTION ===================================================== 
+.section-bikes {
+	background-color: $light-mauve;
+	.banner {
+		background-color: $mauve;
+	}
+	.btn {
+		@include button($mauve);
+	}
+	
+}
+
+
+
+// FOOTER ============================================================ 
+                                                                       
+// MEDIA QUERIES ===================================================== 
+                                                                       
